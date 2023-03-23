@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>DB등록</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <script>
+    function takePicture(input) {
+      $('#camera').change(function (e) {
+        $('#chooseFile').attr('src', URL.createObjectURL(e.target.files[0]));
+      });
+    };
+  </script>
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'registrationDB':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <!--<div class="col-md-9"
+                 style="height:4em; width:90%; background-color:#D5D5D5; color: #081148; padding-top: 1.25em; padding-left: 2em; margin-bottom: 2em;">-->
+            <!--<a style="font-weight: bold; margin-right: 1em;">공지사항</a> <a>[필독] 수수료 지급안내</a>-->
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <!--</div>-->
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container-fluid mt-n10 "
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ DB등록
+      </div>
+      <div class="container-xl px-4"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+
+        <div class="row row-cols-auto">
+          <div class="col-auto me-auto">
+            <input class="form-check-input" type="checkbox">
+            <label class="form-check-label"> DB묶음</label>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-navy btn-sm" type="button">DB 불러오기</button>
+            <button class="btn btn-navy btn-sm" type="button">일정 불러오기</button>
+
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-12 mt-3 mb-4">
+          <div class="" style="background-color: white">
+            <table id="datatablesSimple" class="table caption-top " style="background-color: white">
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <tbody>
+              <tr>
+                <th colspan="3" class="text-center bg-gray-100">작성일자</th>
+                <td colspan="7" class="text-center">
+                  <input class="form-control form-control-sm" id="inputDate" type="text"
+                         placeholder="일정 등록된 자료에서 가져옴" style="text-align: center;" disabled="">
+                </td>
+              </tr>
+              <tr>
+                <th colspan="3" class="text-center bg-gray-100">건물명</th>
+                <td colspan="7" class="text-center">
+                  <input class="form-control form-control-sm" id="inputBulidingName" type="text"
+                         placeholder="일정 등록된 자료에서 가져오거나 수동입력" style="text-align: center;">
+                </td>
+              </tr>
+              <tr>
+                <th colspan="3" class="text-center bg-gray-100">주소</th>
+                <td colspan="7" class="text-center">
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="일정 등록된 자료에서 가져오거나 수동입력" style="text-align: center;"
+                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-navy btn-sm" type="button" id="button-addon2">중복체크
+                    </button>
+                  </div>
+
+                </td>
+              </tr>
+              <tr>
+                <th rowspan="3" colspan="3" class="text-center bg-gray-100" style="padding-top: 2em;">
+                  전기차충전기<br>담당자 정보
+                </th>
+                <th colspan="2" class="text-center bg-gray-100">이름</th>
+                <td colspan="2">
+                  <div class="text-center" style="height: 100%">
+                    <input class="form-control form-control-sm" id="inputManagerName" type="text"
+                           placeholder="일정 등록된 자료/수동입력"
+                           style="text-align: center; height: 100%; width:100%; ">
+                  </div>
+                </td>
+                <th class="text-center bg-gray-100">직책</th>
+                <td colspan="2">
+                  <input class="form-control form-control-sm" id="inputManagerPosition" type="text"
+                         placeholder="일정 등록된 자료/수동입력"
+                         style="text-align: center; height: 100%; width:100%;">
+                </td>
+              </tr>
+
+              <tr>
+                <th colspan="2" class="text-center bg-gray-100">연락처</th>
+                <td colspan="5">
+                  <input class="form-control form-control-sm" id="inputManagerPhone" type="text"
+                         placeholder="일정 등록된 자료/수동입력" style=" height: 100%; width:100%; ">
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2" class="text-center bg-gray-100">E-mail</th>
+                <td colspan="5">
+                  <input class="form-control form-control-sm" id="inputManagerEmail" type="text"
+                         placeholder="DB에 저장된 e-mail 불러오기" style=" height: 100%; width:100%;"
+                         disabled="">
+                </td>
+              </tr>
+              <tr>
+                <th colspan="3" class="text-center bg-gray-100">총 주차면</th>
+                <td colspan="7">
+                  <input class="form-control form-control-sm" id="inputTotalParkingArea" type="text"
+                         placeholder="DB에 저장된 DATA 불러오기" style=" height: 100%; width:100%;"
+                         disabled="">
+                </td>
+              </tr>
+              <tr style="border-top: 2px solid #69707a;">
+                <th colspan="3" class="text-center"
+                    style="background-color: #E0EBEE; border-right:2px solid #69707a">의무설치수량
+                </th>
+                <th colspan="3" class="text-center"
+                    style="background-color: #E0EBEE; border-right:2px solid #69707a">기설치수량
+                </th>
+                <th colspan="2" class="text-center"
+                    style="background-color: #FDEDDE; border-right:2px solid #69707a">실사요청수량
+                </th>
+                <th colspan="2" class="text-center" style="background-color: #F6C79B">교체요청수량</th>
+              </tr>
+              <tr class="text-center"
+                  style="border: 1px solid #e0e5ec; border-left: none; border-right:none;">
+                <th style="border-right: 1px solid #e0e5ec;">전용주차면</th>
+                <th style="border-right: 1px solid #e0e5ec;">급속</th>
+                <th style="border-right:2px solid #69707a;">완속</th>
+                <th style="border-right: 1px solid #e0e5ec;">전용주차면</th>
+                <th style="border-right: 1px solid #e0e5ec;">급속</th>
+                <th style="border-right:2px solid #69707a;">완속</th>
+                <th style="border-right: 1px solid #e0e5ec;">급속</th>
+                <th style="border-right:2px solid #69707a;">완속</th>
+                <th style="border-right: 1px solid #e0e5ec;">급속</th>
+                <th>완속</th>
+              </tr>
+              <tr style="border-bottom: 2px solid #69707a;">
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputParkingLot1" type="text"
+                         style=" height: 100%; width:100%; text-align: center;" placeholder="자동계산"
+                         disabled="">
+                </td>
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputRapidity1" type="text"
+                         style=" height: 100%; width:100%; text-align: center;" placeholder="자동계산"
+                         disabled="">
+                </td>
+                <td style="border-right:2px solid #69707a;">
+                  <input class="form-control form-control-sm" id="inputSlowSpeed1" type="text"
+                         style=" height: 100%; width:100%; text-align: center;" placeholder="자동계산"
+                         disabled="">
+                </td>
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputParkingLot2" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputRapidity2" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td style="border-right:2px solid #69707a;">
+                  <input class="form-control form-control-sm" id="inputSlowSpeed2" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputRapidity3" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td style="border-right:2px solid #69707a;">
+                  <input class="form-control form-control-sm" id="inputSlowSpeed3" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td style="border-right: 1px solid #e0e5ec;">
+                  <input class="form-control form-control-sm" id="inputRapidity4" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+                <td>
+                  <input class="form-control form-control-sm" id="inputSlowSpeed4" type="text"
+                         style=" height: 100%; width:100%; text-align: center;">
+                </td>
+              </tr>
+              <tr style="font-weight:bold;">
+                <th class="text-center bg-gray-100" colspan="3">설치희망장소</th>
+                <td colspan="7">
+                  <div class="row">
+                    <div class="col-md-6 text-center">
+                      <input class="form-check-input" type="checkbox" checked>
+                      <span>지상주차장 1F</span>
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-check-input" type="checkbox">
+                      <span>지하주차장 B1</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr style="font-weight:bold;">
+                <th class="text-center bg-gray-100" colspan="3">설치희망일</th>
+                <td colspan="7">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" checked>
+                      <span>가급적 빨리</span>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox">
+                      <span>다음주 이후</span>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox">
+                      <span>특정일(날짜선택)</span>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox">
+                      <span>기타</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="3" class="text-center bg-gray-100" style="padding-top: 1.25em;">실사요청사항</th>
+                <td colspan="7">
+                  <textarea class="form-control" placeholder="내용을 입력해주세요"></textarea>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container-xl px-4 mt-4">
+        <div class="container-fluid">
+          <div class="col-lg-4 col-xl-12 mb-2">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">
+                <button type="button" class="btn btn-navy btn-sm">사이트 추가</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-navy btn-sm">저장</button>
+                <button class="btn btn-navy btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">실사요청서 업로드</button>
+
+                <!-- Modal Part-->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel1"><b>실사요청서 업로드</b></h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body px-4 mb-2">실사요청서 작성된 이미지 파일, 또는 pdf 파일을 업로드 해주세요. 실사요청서 허위작성을 절대 금지하며 적발 시 강력한 법적 책임을 질 수 있음을 고지합니다.</div>
+                      <div class="container-fluid mb-4">
+                        <div class="row">
+                          <div class="col-md-4"><b>파일 첨부</b></div>
+                          <div class="col-md-8">
+                            <!-- 파일 단일 선택만 가능 -->
+                            <input type="file" class="form-control form-control-sm" id="inputGroupFile02">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-dismiss="modal">닫 기</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" for="inputGroupFile02">업 로 드</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel2"><b>업로드 완료!</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                        현장실사요청을 진행하시겠습니까?
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-navy btn-sm" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">확 인</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--a 태그로 버튼처럼 사용하기 : <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>-->
+                <!-- Modal Part -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-xl px-4 ">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">&nbsp;</div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-navy btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalCenter3">현장실사등록</button>
+
+                <!-- Modal Part -->
+                <div class="modal fade" id="exampleModalCenter3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel3"><span style="font-weight:bold; color:#2F5597">현장실사 등록완료!</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                        현장실사요청서가 등록되었습니다.
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-navy btn-sm" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">실사요청서 생성</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-target="" data-bs-toggle="" for="">이메일 자료전송</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-dismiss="modal">닫 기</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel4">실사요청서</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        실사요청서양식에 맞게 폼 전송한 뒤 이미지로 띄워 출력. 이메일전송, 저장가능버튼생성(관리자가 충전사업자에게 전송할 실사요청서가 필요함)
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-navy btn-sm" data-bs-target="" data-bs-toggle="modal">출 력</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-target="" data-bs-toggle="" for="">다운로드</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-target="" data-bs-toggle="" for="">이메일 전송</button>
+                        <button class="btn btn-navy btn-sm" type="button" data-bs-dismiss="modal">닫 기</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal Part -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

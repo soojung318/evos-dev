@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>이메일 전송</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--부트스트랩 아이콘 cdn-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'sendEmail':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div>&nbsp;</div>
+      <div class="container-fluid mt-n10"
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ 이메일 전송
+      </div>
+      <div class="container-xl px-4 mt-4"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+
+        <div class="container-fluid mb-4 mt-4">
+          <div class="d-flex justify-content-evenly">
+            <div class="col fw-600"
+                 style="margin-right: 2em; border-top: 2px solid #69707a; border-bottom: 2px solid #69707a; background-color: #F2F2F2; text-align: center;">
+              법령정보
+            </div>
+            <div class="col fw-600"
+                 style="margin-right: 2em; border-top: 2px solid #69707a; border-bottom: 2px solid #69707a; background-color: #F2F2F2; text-align: center;">
+              제안서
+            </div>
+            <div class="col fw-600"
+                 style="margin-right: 2em; border-top: 2px solid #69707a; border-bottom: 2px solid #69707a; background-color: #F2F2F2; text-align: center;">
+              실사보고서 샘플
+            </div>
+            <div class="col fw-600"
+                 style="margin-right: 2em; border-top: 2px solid #69707a; border-bottom: 2px solid #69707a; background-color: #F2F2F2; text-align: center;">
+              계약서류
+            </div>
+          </div>
+          <div class="d-flex justify-content-evenly mt-2">
+            <div class="col p-3" style="margin-right: 2em;  background-color: #E9EBF5;">
+              <label><input type="checkbox" class="form-check-input"> 친환경자동차 법률</label>
+              <label><input type="checkbox" class="form-check-input"> 친환경자동차 시행령</label>
+              <br><br>
+              <div class="fw-700">친환경자동차 지차체 조례</div>
+              <label><input type="checkbox" class="form-check-input"> 서울특별시</label>
+              <label><input type="checkbox" class="form-check-input"> 경기도</label>
+              <label><input type="checkbox" class="form-check-input"> 세종특별시</label>
+              <label><input type="checkbox" class="form-check-input"> 강원도</label>
+              <label><input type="checkbox" class="form-check-input"> 인천광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 충청북도</label>
+              <label><input type="checkbox" class="form-check-input"> 부산광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 충청남도</label>
+              <label><input type="checkbox" class="form-check-input"> 대구광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 경상북도</label>
+              <label><input type="checkbox" class="form-check-input"> 광주광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 경상남도</label>
+              <label><input type="checkbox" class="form-check-input"> 울산광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 전라북도</label>
+              <label><input type="checkbox" class="form-check-input"> 대전광역시</label>
+              <label><input type="checkbox" class="form-check-input"> 전라남도</label><br>
+              <label><input type="checkbox" class="form-check-input"> 제주도</label>
+            </div>
+            <div class="col p-3"
+                 style="margin-right: 2em;  background-color: #E9EBF5;">
+              <div class="fw-700">EV링크넷 제안서</div>
+              <label><input type="checkbox" class="form-check-input"> 기본제안서</label><br>
+              <label><input type="checkbox" class="form-check-input"> 화재소화포 제안서</label>
+              <label><input type="checkbox" class="form-check-input"> 환경부보조금 신청 안내장</label>
+              <label><input type="checkbox" class="form-check-input"> 수익형충전기 제안서</label>
+              <br><br><br>
+              <div class="fw-700">충전사업자 제안서</div>
+              <label><input type="checkbox" class="form-check-input"> RE100 제안서(플러그링크)</label>
+              <label><input type="checkbox" class="form-check-input"> 회사브로셔(플러그링크)</label>
+              <label><input type="checkbox" class="form-check-input"> 회사브로셔(한화솔루션)</label>
+              <label><input type="checkbox" class="form-check-input"> 회사브로셔(SK홈앤서비스)</label>
+            </div>
+            <div class="col p-3"
+                 style="margin-right: 2em;  background-color: #E9EBF5;">
+              <div class="fw-700">주거시설</div>
+              <label><input type="checkbox" class="form-check-input"> 일산에듀포레아파트(일산)</label>
+              <label><input type="checkbox" class="form-check-input"> 수정타운아파트(대전)</label>
+              <label><input type="checkbox" class="form-check-input"> 노형뜨란채아파트(제주)</label>
+              <br><br><br>
+              <div class="fw-700">공공시설</div>
+              <label><input type="checkbox" class="form-check-input"> 인천아시아드경기장(스포츠시설)</label>
+              <label><input type="checkbox" class="form-check-input"> 안양시청사(청사)</label>
+              <label><input type="checkbox" class="form-check-input"> 경북대학교(학교)</label>
+              <label><input type="checkbox" class="form-check-input"> 삼산농산물도매시장(도매상가)</label>
+              <br><br><br>
+              <div class="fw-700">상업시설</div>
+              <label><input type="checkbox" class="form-check-input"> 사우스링스 골프장</label>
+              <label><input type="checkbox" class="form-check-input"> 안산오토돔매매단지</label>
+              <label><input type="checkbox" class="form-check-input"> 호텔나루 갤러리</label>
+              <label><input type="checkbox" class="form-check-input"> 샤크존 주차타워</label>
+            </div>
+            <div class="col p-3"
+                 style="margin-right: 2em;  background-color: #E9EBF5;">
+              <div class="fw-700">- 플러그링크 -</div>
+              <label><input type="checkbox" class="form-check-input"> 플러그링크 계약서류 안내장</label>
+              <label><input type="checkbox" class="form-check-input"> 플러그링크 계약서</label>
+              <label><input type="checkbox" class="form-check-input"> 직인사용동의서</label>
+              <label><input type="checkbox" class="form-check-input"> 한전 전기사용신청서</label>
+              <br><br><br>
+              <div class="fw-700">- 한화솔루션 -</div>
+              <label><input type="checkbox" class="form-check-input"> 한화솔루션 계약서류 안내장</label>
+              <label><input type="checkbox" class="form-check-input"> 한화솔루션 계약서</label>
+              <label><input type="checkbox" class="form-check-input"> 직인사용동의서</label>
+              <label><input type="checkbox" class="form-check-input"> 한전 전기사용신청서</label>
+              <br><br><br>
+              <div class="fw-700">- 에버온 -</div>
+              <label><input type="checkbox" class="form-check-input"> 에버온 계약서류 안내장</label>
+              <label><input type="checkbox" class="form-check-input"> 에버온 계약서</label>
+              <label><input type="checkbox" class="form-check-input"> 직인사용동의서</label>
+              <label><input type="checkbox" class="form-check-input"> 한전 전기사용신청서</label>
+            </div>
+          </div>
+          <div class="d-flex justify-content-evenly mt-2">
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;  background-color: #E9EBF5;">
+              <label><input type="checkbox" class="form-check-input"> 현장실사요청서 양식</label>
+            </div>
+          </div>
+          <div class="d-flex justify-content-evenly mt-2">
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;">&nbsp;</div>
+            <div class="col p-3" style="margin-right: 2em;  background-color: #E9EBF5;">
+              <label><input type="checkbox" class="form-check-input"> 현장실사보고서</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="container-xl px-4 mt-4">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">&nbsp;</div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-navy btn-sm">파일 다운로드</button>
+                <button type="button" class="btn btn-navy btn-sm">이메일 전송</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

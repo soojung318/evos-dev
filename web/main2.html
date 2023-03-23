@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>메인 페이지</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/include/css/style.css" />
+  <link rel="icon" href="/images/LOGO1_2.png" />
+  <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+
+  <!--메뉴-->
+  <%- include('./include/html/menu.html', {activeClass:{'managerDistributionDB':'active'}}); %>
+
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container show-grid" style="margin-bottom:2em;">
+        <div class="row" style="font-weight:bold;">
+          <div class="col-md-3 mt-n10">
+            <span>월 별 실사업적 순위</span>
+          </div>
+          <div class="col-md-4 mt-n10" style="margin-left: 9em;">
+            <span>월 별 계약업적 순위</span>
+          </div>
+          <div class="col-md-3 mt-n10" style="margin-left: 2em;">
+            <span>월 별 공지사항 순위</span>
+          </div>
+        </div>
+      </div>
+      <div class="container show-grid" style="margin-bottom:4em;">
+        <div class="row">
+          <div class="col-md-4 mt-n10 card" style="margin-right: 2em; ">
+            <div class="card-body">
+              <table id="datatablesSimple" class="table table-borderless" style="font-size:10px;">
+                <thead>
+                <tr>
+                  <th colspan="2" class="text-center">실사건수</th>
+                  <th colspan="2" class="text-center">실사대수</th>
+                  <th>실사건물 순위</th>
+                </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                <tr>
+                  <td>10</td>
+                  <td>가소라</td>
+                  <td>45</td>
+                  <td>김도연</td>
+                  <td>경북대학교 캠퍼스</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>정호영<td>
+                  <td>이병용</td>
+                  <td>부평현대1차 아파트</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>김성훈</td>
+                  <td>38</td>
+                  <td>정호영</td>
+                  <td>제주해오름 3차아파트</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>이병용</td>
+                  <td>25</td>
+                  <td>기소라</td>
+                  <td>샤크존 주차타워</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-4 mt-n10 card" style="margin-right: 2em;">
+            <div class="card-body">
+              <table id="datatablesSimpleTwo" class="table table-borderless" style="font-size:10px;">
+                <thead>
+                <tr>
+                  <th colspan="2" class="text-center">실사건수</th>
+                  <th colspan="2" class="text-center">실사대수</th>
+                  <th>실사건물 순위</th>
+                </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                <tr>
+                  <td>10</td>
+                  <td>가소라</td>
+                  <td>45</td>
+                  <td>김도연</td>
+                  <td>경북대학교</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>정호영<td>
+                  <td>이병용</td>
+                  <td>부평현대1차</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>김성훈</td>
+                  <td>38</td>
+                  <td>정호영</td>
+                  <td>제주해오름</td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-3 card mt-n10">
+            <div class="card-body">
+              <table id="datatablesSimpleThree" class="table table-borderless">
+                <tbody>
+                <tr>
+                  <td>23.02.22</td>
+                  <td>자료실 업데이트</td>
+                  <td>운영팀</td>
+                </tr>
+                <tr>
+                  <td>23.02.09</td>
+                  <td>계약서 부가서류 추가</td>
+                  <td>전산팀</td>
+                </tr>
+                <tr>
+                  <td>23.02.01</td>
+                  <td>2월 프로모션 안내</td>
+                  <td>관리자</td>
+                </tr>
+                <tr>
+                  <td>23.02.01</td>
+                  <td>충전사 이슈사항</td>
+                  <td>운영팀</td>
+                </tr>
+                <tr>
+                  <td>23.01.26</td>
+                  <td>EVOS 사용방법 안내</td>
+                  <td>관리자</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div class="container-xl px-4 mt-n10 mt-4" style="margin-left: 5em;">
+        <div class="col-lg-4 col-xl-12 card mb-4">
+          <div class="card-header">CheckList</div>
+          <div class="card-body">
+            <table id="datatablesSimple2" class="table caption-top">
+
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="text-center">No</th>
+                <th class="text-center">사유</th>
+                <th class="text-center">건물명</th>
+                <th>총주차면</th>
+                <th>실사대수</th>
+                <th class="text-center">주소</th>
+                <th>현재상태</th>
+              </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+              <tr>
+                <td>706</td>
+                <td style="color:red;">고객사연락요청</td>
+                <td>안양시 공영주차장</td>
+                <td>1354</td>
+                <td>28</td>
+                <td>안양시청</td>
+                <td>실사요청</td>
+              </tr>
+              <tr>
+                <td>705</td>
+                <td style="color:blue;">신규DB배분</td>
+                <td>한국에너지기술연구원</td>
+                <td>105</td>
+                <td>3</td>
+                <td>테크노산업로55번길 26</td>
+                <td>실사요청</td>
+              </tr>
+
+              <tr>
+                <td>704</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #1</td>
+                <td>550</td>
+                <td>11</td>
+                <td>안양구 123</td>
+                <td>실사완료</td>
+              </tr>
+
+              <tr>
+                <td>703</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #2</td>
+                <td>325</td>
+                <td>7</td>
+                <td>안양구 14</td>
+                <td>실사완료</td>
+              </tr>
+              <tr>
+                <td>704</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #1</td>
+                <td>479</td>
+                <td>10</td>
+                <td>동안구 11</td>
+                <td>실사완료</td>
+              </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--금일실사등록-->
+      <div class="text-center" style="font-size:20px; font-weight:bold; margin-top: 3em; margin-left: 5em; border: 5px solid #BF9000; background-color: white; width:80%; border-radius: 20px;">
+        <span>금일 실사등록 총  </span><a style="color:#BF9000; font-size:40px;">3</a><span>  건 입니다.</span>
+      </div>
+      <div class="container show-grid" style="margin-top:2em;">
+        <div class="row">
+          <hr style="border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">28</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">25</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">7</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">18</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">13</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">5</span>
+            </div>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <div class="shadow p-3 mb-5 bg-body rounded" style="width:5em; text-align: center;">
+              <span style="font-weight:bold; font-size:20px;">3</span>
+            </div>
+          </div>
+          </hr>
+        </div>
+      </div>
+      <div class="container show-grid" style="text-align: center;">
+        <div class="row">
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>DB등록</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>실사등록</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>실사진행</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>실사완료</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>계약진행</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>계약완료</span>
+          </div>
+          <div class="col-md-1" style=" margin-left:2em; margin-right: 2em;">
+            <span>시공진행</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

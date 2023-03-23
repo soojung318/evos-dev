@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>실사보고서 등록</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--jquery cdn-->
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+  <!--부트스트랩 아이콘 cdn-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+  <style>
+    .upload_btn{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<!--파일 업로드 할 때 파일명 가져오는 함수-->
+<script>
+  function loadFile(input) {
+    var num = $(input).attr('num');
+    console.log(num);
+    var file = input.files[0];
+    var name = document.getElementById('fileName' + num);
+    name.textContent = file.name;
+  }
+</script>
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'registrationDueDiligence':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <!--<div class="col-md-9"
+                 style="height:4em; width:90%; background-color:#D5D5D5; color: #081148; padding-top: 1.25em; padding-left: 2em; margin-bottom: 2em;">-->
+            <!--<a style="font-weight: bold; margin-right: 1em;">공지사항</a> <a>[필독] 수수료 지급안내</a>-->
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <!--</div>-->
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div>&nbsp;</div>
+      <div class="container-fluid mt-n10"
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ 실사보고서 등록
+      </div>
+      <div class="container-xl px-4 mt-4"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="row row-cols-auto">
+            <div class="col-md-9">
+              &nbsp;▪️
+              <label class="form-check-label" style="font-weight:bold;"> 실사정보</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-12  mb-4">
+          <table id="rdd2" class="table caption-top table-sm" style="background-color: white">
+            <colgroup>
+              <col style="width:auto">
+            </colgroup>
+            <tbody>
+            <tr style="border-bottom: 2px solid #69707a">
+              <th class="text-center" style="background-color: #D0F1F4">DB번호</th>
+              <td class="text-center">D002301</td>
+              <th class="text-center" style="background-color: #D0F1F4">DB등록일</th>
+              <td class="text-center">2023-03-02</td>
+              <th class="text-center" style="background-color: #D0F1F4">실사요청일</th>
+              <td class="text-center">2023-03-06</td>
+              <th class="text-center" style="background-color: #D0F1F4">실사완료일</th>
+              <td class="text-center">2023-03-06</td>
+              <th class="text-center" style="background-color: #D0F1F4">실사진행상태</th>
+              <td class="text-center">실사완료</td>
+            </tr>
+            </tbody>
+          </table>
+          <table id="detailsDB2" class="table caption-top table-sm" style="background-color: white">
+            <colgroup>
+              <col style="width:auto">
+            </colgroup>
+            <tbody>
+            <tr>
+              <th colspan="2" class="text-center" style="background-color: #D0F1F4">건물명</th>
+              <th class="text-center" style="background-color: #D0F1F4">총주차면</th>
+              <th class="text-center" style="background-color: #D0F1F4">주소1</th>
+              <th class="text-center" style="background-color: #D0F1F4">주소2</th>
+              <th class="text-center" style="background-color: #D0F1F4">상세주소</th>
+              <th class="text-center" style="background-color: #D0F1F4">1차건물</th>
+              <th class="text-center" style="background-color: #D0F1F4">2차건물</th>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">[안양시청]공영주차장1</td>
+              <td class="text-center">112</td>
+              <td class="text-center">안양</td>
+              <td class="text-center">만안구</td>
+              <td class="text-center">삼덕로37번길 22</td>
+              <td class="text-center">공공시설</td>
+              <td class="text-center">공영주차장</td>
+            </tr>
+            <tr>
+              <th class="text-center" style="background-color: #D0F1F4">담당자명</th>
+              <th class="text-center" style="background-color: #D0F1F4">담당자연락처</th>
+              <th class="text-center" style="background-color: #D0F1F4">담당자 이메일</th>
+              <td rowspan="2" colspan="5" class="align-middle"></td>
+            </tr>
+            <tr style="border-bottom: 2px solid #69707a">
+              <td class="text-center">김제선 팀장</td>
+              <td class="text-center">010-4455-5151</td>
+              <td class="text-center">kimjs@kie.re.kr</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="col-lg-4 col-xl-12  mb-4">
+            <div class="col-lg-4 col-xl-12 mb-4">
+              <table id="rdd3" class="table caption-top table-sm" style="background-color: white">
+                <colgroup>
+                  <col style="width:12%">
+                  <col style="width:5%">
+                  <col style="width:10%">
+                  <col style="width:5%">
+                  <col style="width:10%">
+                  <col style="width:5%">
+                  <col style="width:6%">
+                  <col style="width:6%">
+                  <col style="width:5%">
+                  <col style="width:8%">
+                  <col style="width:10%">
+                  <col style="width:10%">
+                  <col style="width:10%">
+                </colgroup>
+                <tbody>
+                <tr>
+                  <th class="text-center" style="background-color: #D0F1F4">의무_전용주차면</th>
+                  <td class="text-center">10</td>
+                  <th class="text-center" style="background-color: #D0F1F4">의무_급속</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">의무_완속</th>
+                  <td class="text-center">10</td>
+                  <th colspan="2" class="text-center" style="background-color: #D0F1F4">기설치_전용주차면</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">기설치_급속</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">기설치_완속</th>
+                  <td class="text-center">-</td>
+                </tr>
+                <tr>
+                  <td class="text-center"
+                      style="font-weight:bold; background-color: #FFF2CC">실사요청_전용주차면
+                  </td>
+                  <td colspan="2" class="text-center"
+                      style="font-weight:bold; background-color: #FFF2CC">실사요청_급속
+                  </td>
+                  <td colspan="2" class="text-center"
+                      style="font-weight:bold; background-color: #FFF2CC">실사요청_완속
+                  </td>
+                  <td colspan="2" class="text-center"
+                      style="font-weight:bold; background-color: #D0F1F4">교체_급속
+                  </td>
+                  <td colspan="2" class="text-center"
+                      style="font-weight:bold; background-color: #D0F1F4">교체_완속
+                  </td>
+                  <td colspan="4" class="">실사요청 메모</td>
+                </tr>
+                <tr style="border-bottom: 2px solid whitesmoke">
+                  <td class="text-center">10</td>
+                  <td colspan="2" class="text-center">-</td>
+                  <td colspan="2" class="text-center">10</td>
+                  <td colspan="2" class="text-center">-</td>
+                  <td colspan="2" class="text-center">-</td>
+                  <td colspan="4"><input type="text" class="form-control form-control-sm"
+                                         id="requestMemo"></td>
+                </tr>
+                </tbody>
+              </table>
+
+              <table id="rdd4" class="table caption-top table-sm" style="background-color: white">
+                <colgroup>
+                  <col style="width:auto">
+                </colgroup>
+                <tbody>
+                <tr>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 요청일</th>
+                  <td class="text-center">2023-02-15</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 진행일</th>
+                  <td class="text-center">2023-04-22</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사회사</th>
+                  <td class="text-center">아이토브</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 담당자</th>
+                  <td class="text-center">임문택</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 진행상태</th>
+                  <td class="text-center">실사완료</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #69707a">
+                  <th class="text-center" style="background-color: #D0F1F4">충전사</th>
+                  <td class="text-center">플러그링크</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 결과</th>
+                  <td class="text-center">무상</td>
+                  <th class="text-center" style="background-color: #D0F1F4">추가비용</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">비용처리안</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">최종비용</th>
+                  <td class="text-center">-</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #69707a">
+                  <th class="text-center" style="background-color: #D0F1F4">충전사</th>
+                  <td class="text-center">한화모티브</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 결과</th>
+                  <td class="text-center">무상</td>
+                  <th class="text-center" style="background-color: #D0F1F4">추가비용</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">비용처리안</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">최종비용</th>
+                  <td class="text-center">-</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #69707a">
+                  <th class="text-center" style="background-color: #D0F1F4">충전사</th>
+                  <td class="text-center">에버온</td>
+                  <th class="text-center" style="background-color: #D0F1F4">실사 결과</th>
+                  <td class="text-center">유상</td>
+                  <th class="text-center" style="background-color: #D0F1F4">추가비용</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">비용처리안</th>
+                  <td class="text-center">-</td>
+                  <th class="text-center" style="background-color: #D0F1F4">최종비용</th>
+                  <td class="text-center">-</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="container-fluid" style="margin-bottom:0.5em;">
+              <div class="row row-cols-auto">
+                <div class="col-md-9">
+                  &nbsp;▪️
+                  <label class="form-check-label" style="font-weight:bold;"> 설치위치정보</label>
+                </div>
+              </div>
+            </div>
+            <table id="rdd5" class="text-center table caption-top table-sm" style="background-color: white">
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <tbody>
+              <tr>
+                <th rowspan="5" style="background-color: #D0F1F4">설치위치<br>#01</th>
+                <th style="background-color: #F2F2F2">설치장소명</th>
+                <td colspan="2">텍스트</td>
+                <th style="background-color: #F2F2F2">설치대수[신규]</th>
+                <td>99</td>
+                <th style="background-color: #F2F2F2">설치대수[교체]</th>
+                <td>99</td>
+                <th style="background-color: #F2F2F2">연결방식</th>
+                <td>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value="1" selected>[모자분리]</option>
+                    <option value="2">[한전지상]</option>
+                    <option value="3">[한전지중]</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th style="background-color: #F2F2F2">전선관 길이</th>
+                <td>999</td>
+                <th style="background-color: #F2F2F2">배선길이</th>
+                <td>999</td>
+                <td>
+                  <button class="btn btn-sm shadow.sm" style="background-color: #f2f2f2;"
+                          type="button"
+                          data-bs-toggle="modal" data-bs-target="#exampleModalCenter">+ 추가
+                  </button>
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered"
+                         role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">추가사항</h5>
+                          <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!--modal body-->
+
+                          <label><input type="checkbox"
+                                        class="form-check-input">분전함대수</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">기초패드</label><br>
+                          <label><input type="checkbox" class="form-check-input"
+                                        checked>스탠드</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">캐노피</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">도로커팅</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">포크레인</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">볼라드</label><br>
+                          <label><input type="checkbox"
+                                        class="form-check-input">땅파기</label><br>
+                          <!--modal body-->
+                          <div class="modal-footer">
+                            <button class="btn btn-navy btn-sm" type="button"
+                                    data-bs-dismiss="modal">
+                              추가
+                            </button>
+                          </div> <!--data-bs-dismiss="modal"  << 모달창 닫는 요소-->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr style="background-color: #f2f2f2;">
+                <th>설치위치전면</th>
+                <th>설치위치옆면</th>
+                <th>분전함</th>
+                <th>주차장도면</th>
+                <th>배관/배전</th>
+                <th>기설치충전기</th>
+                <th>기타1</th>
+                <th>기타2</th>
+                <td rowspan="2" class="align-middle" style="background-color: white">
+                  <div class="col-auto">
+                    <button class="btn btn-navy ">목록 추가</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="border-bottom: 2px solid #69707a">
+                <td>
+                  <div class="upload_btn ">
+                    <!--기존 코드: <button type="button" class="btn btn-light btn-sm">업로드</button>-->
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName1"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile1" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile1" name="uploadFile"
+                             accept="image/*"
+                             num="1"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName2"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile2" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile2" name="uploadFile"
+                             accept="image/*"
+                             num="2"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName3"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile3" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile3" name="uploadFile"
+                             accept="image/*"
+                             num="3"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName4"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile4" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile4" name="uploadFile"
+                             accept="image/*"
+                             num="4"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName5"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile5" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile5" name="uploadFile"
+                             accept="image/*"
+                             num="5"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName6"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile6" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile6" name="uploadFile"
+                             accept="image/*"
+                             num="6"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName7"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile7" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile7" name="uploadFile"
+                             accept="image/*"
+                             num="7"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+                <td>
+                  <div class="upload_btn">
+                    <form method="post" enctype="multipart/form-data">
+                      <p id="fileName8"></p>
+                      <label class="btn btn-light btn-sm"
+                             for="uploadFile8" name="uploadFile"
+                             role="button">업로드</label>
+                      <input type="file" id="uploadFile8" name="uploadFile"
+                             accept="image/*"
+                             num="8"
+                             onchange="loadFile(this)"
+                             style="display: none;">
+                    </form>
+                  </div>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-navy btn-sm" type="button">설치위치추가</button>
+          </div>
+        </div>
+      </div>
+      <div class="container-xl px-4 mt-4">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">&nbsp;</div>
+              <div class="col-auto">
+                <button class="btn btn-navy btn-sm" type="button">보고서 생성</button>
+                <button type="button" class="btn btn-navy btn-sm">저 장</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

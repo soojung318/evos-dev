@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>실사보고서 전송</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--부트스트랩 아이콘 cdn-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'sendDueDiligence':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <div>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <!--<div class="col-md-9"
+                 style="height:4em; width:90%; background-color:#D5D5D5; color: #081148; padding-top: 1.25em; padding-left: 2em; margin-bottom: 2em;">-->
+            <!--<a style="font-weight: bold; margin-right: 1em;">공지사항</a> <a>[필독] 수수료 지급안내</a>-->
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <!--</div>-->
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div>&nbsp;</div>
+      <div class="container-fluid mt-n10"
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ 실사보고서 전송
+      </div>
+
+
+      <div class="container-xl px-4 mt-2"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+        <!-- memo
+        container-fluid vs table-responsive
+        -->
+        <div class="row row-cols-auto">
+          <div class="col-auto me-auto">&nbsp;</div>
+          <div class="col-auto">
+            <div class="input-group mb-3">
+              <button class="btn btn-navy btn-sm" type="button" id="button-addon1">필터검색</button>
+              <input type="text" class="form-control form-control-sm" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <table class="table table-sm text-center">
+              <tr style="border-top: 2px solid #a7aeb8; border-bottom: 2px solid #a7aeb8;">
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td>NO</td>
+                <td>DB번호</td>
+                <td>건물명</td>
+                <td>주소1</td>
+                <td>총주차면</td>
+                <td>실사대수</td>
+                <td>실사담당사</td>
+                <td>실사요청일</td>
+                <td>실사완료일</td>
+                <td>실사보고서</td>
+                <td>전달발식</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td>2</td>
+                <td>DB230911</td>
+                <td>한국에너지연구원</td>
+                <td>울산</td>
+                <td>2023</td>
+                <td>40</td>
+                <td>아이토브</td>
+                <td>2023-02-11</td>
+                <td>2023-02-11</td>
+                <td>
+                  <div class="down_btn">
+                    <a href="/images/icons8-pdf-64.png" download><button style="background-color: white; border: none;"><img src="/images/icons8-pdf-64.png" width="40%" height="40%"></button></a>
+                  </div>
+                </td>
+                <td style="font-weight: bold;">
+                  <div class="d-flex bd-highlight">
+                    <div class="flex-grow-1 bd-highlight">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="1" selected>[이메일전송]</option>
+                        <option value="2">[팩스전송]</option>
+                        <option value="3">[우편전송]</option>
+                        <option value="4">[직접제출]</option>
+                      </select>
+                    </div>
+                    <div class="bd-highlight" style="padding-left: 0.2em">
+                      <button class="btn btn-navy btn-sm" type="button" id="button-addon3">전송</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td>1</td>
+                <td>EV123078</td>
+                <td>[안양시청]공영주차장#1</td>
+                <td>경기</td>
+                <td>125</td>
+                <td>5</td>
+                <td>EV링크넷</td>
+                <td>2023-03-01</td>
+                <td>2023-03-16</td>
+                <td>
+                  <div class="down_btn">
+                    <a href="/images/icons8-pdf-64.png" download><button style="background-color: white; border: none;"><img src="/images/icons8-pdf-64.png" width="40%" height="40%"></button></a>
+                  </div>
+                </td>
+                <td style="font-weight: bold;">
+                  <div class="d-flex bd-highlight">
+                    <div class="flex-grow-1 bd-highlight">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="1">[이메일전송]</option>
+                        <option value="2" selected>[팩스전송]</option>
+                        <option value="3">[우편전송]</option>
+                        <option value="5">[직접제출]</option>
+                      </select>
+                    </div>
+                    <div class="bd-highlight" style="padding-left: 0.2em">
+                      <button class="btn btn-navy btn-sm" type="button" id="button-addon2">전송</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container-xl px-4 mt-4">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">&nbsp;</div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-navy btn-sm">실사보고서<br>다운로드</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </main>
+
+      <footer class="footer-admin mt-auto footer-light">
+        <div class="container-xl px-4">
+          <div class="row">
+            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+            <div class="col-md-6 text-md-end small">
+              <a href="#!">Privacy Policy</a>
+              &middot;
+              <a href="#!">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

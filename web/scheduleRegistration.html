@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>일정등록</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--우편번호 찾기 kakao api-->
+  <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막음.-->
+  <!--<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>-->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    function execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          document.getElementById('zip-code').value = data.zonecode;
+          document.getElementById('inputAddress').value = data.address;
+          document.getElementById('inputNumAddress').value = data.jibunAddress;
+          document.getElementById('inputDetailAddress').focus();
+        }
+      }).open();
+    }
+
+    function execDaumPostcodeReset() {
+      document.getElementById('zip-code').value = null;
+      document.getElementById('inputAddress').value = null;
+      document.getElementById('inputNumAddress').value = null;
+      document.getElementById('inputDetailAddress').value = null;
+    }
+  </script>
+
+  <!-- 부트스트랩 날짜/ 달력/ 시간 ; date picker-->
+  <!-- datepicker 는 jquery 1.7.1 이상 bootstrap 2.0.4 이상 버전이 필요함 -->
+  <!-- jQuery가 먼저 로드 된 후 datepicker가 로드 되어야함.-->
+
+
+  <!--카메라 기능 켬-->
+  <script>
+    function takePicture(input) {
+      $('#camera').change(function (e) {
+        $('#chooseFile').attr('src', URL.createObjectURL(e.target.files[0]));
+      });
+    };
+  </script>
+
+  <!--이미지 화면에 뿌려줄때 사용함. 여기선 명함업로드에 사용됨.-->
+  <script src="http://madalla.kr/js/jquery-1.8.3.min.js"></script>
+
+
+  <!--일정 피커 기능-->
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
+  <!-- 아이콘 기능-->
+  <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div id="layoutSidenav">
+
+  <%- include('./include/html/menu.html', {activeClass:{'scheduleRegistration':'active'}}); %>
+
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container-fluid mt-n10">
+        <!-- 일정 등록 card-->
+        <div class="row " style="margin-top: 2em;">
+          <div class="col-md-3">&nbsp;</div>
+          <div class="col-md-6 card mb-xl-0 shadow bg-body rounded"
+               style="border-radius: 50px; background-color: white">
+            <div class="" style="background-color: white;">
+              <form>
+                <!--상담일자-->
+                <div class="row gx-3">
+                  <table class="table table-bordered border-bg-light"
+                         style="background-color:white; border: 4px solid #F8F8F8; ">
+                    <colgroup>
+                      <col style="width:20%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                      <td class="align-middle"
+                          style="font-weight:bold; border: 4px solid #F8F8F8;">
+                        <span style="color:#C00000;"># </span>상담 일자
+                      </td>
+                      <td colspan="2" style="border: 4px solid #F8F8F8;">
+                        <div class="row gx-3">
+                          <div class="col-md-6">
+                            <div class="input-group input-group-joined">
+                              <!--아이콘 넣는 부분이 잘 안됨.-->
+                              <!-- <span class="input-group-text" style="width:1em;">
+                                   <i class="fa-light fa-calendar-week"></i>
+                                   <i data-feather="calendar"></i>
+                               </span>-->
+
+                              <input class="form-control ps-0 form-control-sm"
+                                     id="litepicker"
+                                     placeholder="이곳을 클릭하여 일정을 선택하세요"/>
+                              <script>
+                                const picker = new Litepicker({
+                                  element: document.getElementById('litepicker')
+                                });
+                              </script>
+                              <script>
+                                //총 4가지 모양. 원하는 거 골라서 id를 위의 script에 넣으면 된다.
+                                window.addEventListener('DOMContentLoaded', event => {
+
+                                  const litepickerSingleDate = document.getElementById('litepickerSingleDate');
+                                  if (litepickerSingleDate) {
+                                    new Litepicker({
+                                      element: litepickerSingleDate,
+                                      format: 'YYYY-MM-DD'
+                                    });
+                                  }
+                                  //https://litepicker.com/docs/options : 데이터 format 형식 적혀있음.
+
+                                  const litepickerDateRange = document.getElementById('litepickerDateRange');
+                                  if (litepickerDateRange) {
+                                    new Litepicker({
+                                      element: litepickerDateRange,
+                                      singleMode: false,
+                                      format: 'MMM DD, YYYY'
+                                    });
+                                  }
+
+                                  const litepickerDateRange2Months = document.getElementById('litepickerDateRange2Months');
+                                  if (litepickerDateRange2Months) {
+                                    new Litepicker({
+                                      element: litepickerDateRange2Months,
+                                      singleMode: false,
+                                      numberOfMonths: 2,
+                                      numberOfColumns: 2,
+                                      format: 'MMM DD, YYYY'
+                                    });
+                                  }
+
+                                  const litepickerRangePlugin = document.getElementById('litepickerRangePlugin');
+                                  if (litepickerRangePlugin) {
+                                    new Litepicker({
+                                      element: litepickerRangePlugin,
+                                      startDate: new Date(),
+                                      endDate: new Date(),
+                                      singleMode: false,
+                                      numberOfMonths: 2,
+                                      numberOfColumns: 2,
+                                      format: 'MMM DD, YYYY',
+                                      plugins: ['ranges']
+                                    });
+                                  }
+                                });
+
+                              </script>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <input class="form-control form-control-sm" type="text" placeholder="00:00" >
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle" style="font-weight:bold;">
+                        <span style="color:#C00000;"># </span>주소
+                      </td>
+                      <td class="display-flex justify-center" colspan="2"
+                          style="border: 4px solid #F8F8F8;">
+                        <div class="row gx-3 mb-3">
+
+                          <div class="col-md-5">
+                            <input type="text" class="form-control form-control-sm"
+                                   name="postcode" id="zip-code" placeholder="우편번호"
+                                   readonly/>
+                          </div>
+                          <div class="col-md-5">
+                            <button class="btn btn-blue bg-gradient btn-sm" type="button"
+                                    onclick="execDaumPostcode()">
+                              우편번호 찾기
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                          <div class="col-md-6 mb-3">
+                            <input class="form-control form-control-sm" id="inputAddress"
+                                   type="text" placeholder="도로명" value="" readonly/>
+                          </div>
+
+                          <div class="col-md-6 mb-3">
+                            <input class="form-control form-control-sm" id="inputNumAddress"
+                                   type="text"
+                                   placeholder="지번" value="" required/>
+                          </div>
+                          <div class>
+                            <input class="form-control form-control-sm"
+                                   id="inputDetailAddress" type="text" placeholder="상세 주소"
+                                   value="우영빌딩 6층" required/>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle" style="font-weight:bold; border: 4px solid #F8F8F8"><span
+                              style="color:#C00000;"># </span>상담종류
+                      </td>
+                      <td class="" colspan="2">
+                        <div class="">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-check">
+                                <input class="form-check-input" id="consultType1"
+                                       type="checkbox"
+                                       name="consultType" checked/>
+                                <label class="form-check-label"
+                                       for="consultType1">초회면담</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-check">
+                                <input class="form-check-input" id="consultType2"
+                                       type="checkbox"
+                                       name="consultType"/>
+                                <label class="form-check-label"
+                                       for="consultType2">재차면담</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 2em;">
+          <div class="col-md-3">&nbsp;</div>
+          <div class="col-md-6 card mb-xl-0 shadow bg-body rounded"
+               style="border-radius: 50px; background-color: white; padding-top:5px;">
+            <div class="">
+              <form>
+                <table class="table responsive-table table-bordered border-bg-light"
+                       style="background-color: white; border: 4px solid #f8f8f8;">
+                  <colgroup>
+                    <col style="width:20%">
+                  </colgroup>
+                  <tbody>
+                  <tr>
+                    <td class="align-middle" style="font-weight: bold; border:4px solid #f8f8f8;">
+                      <span style="color:#C00000;"># </span>직함
+                    </td>
+                    <td style="border: 4px solid #f8f8f8">
+                      <input class="form-control form-control-sm" id="inputUsername" type="text"
+                             placeholder="직함을 입력해주세요" value="사원"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="align-middle" style="font-weight: bold; border:4px solid #f8f8f8;">
+                      <span style="color:#C00000;"># </span>이름
+                    </td>
+                    <td style="border: 4px solid #f8f8f8">
+                      <input class="form-control form-control-sm" id="inputName" type="text"
+                             placeholder="이름을 입력해주세요" value="홍길동"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="align-middle" style="font-weight: bold; border:4px solid #f8f8f8;">
+                      <span style="color:#C00000;"># </span>연락처
+                    </td>
+                    <td style="border: 4px solid #f8f8f8">
+                      <input class="form-control form-control-sm" id="inputPhone" type="text"
+                             placeholder="연락처를 입력해주세요" value="010-1234-5678"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="align-middle"
+                        style="font-weight: bold; border:4px solid #f8f8f8; text-align: center;">
+                      명함사진 업로드
+                    </td>
+                    <td>
+                      <!-- 명함 사진 card-->
+                      <div class="justify-center col-md-12 mb-4 mb-xl-0"
+                           style="border: 2px solid #f8f8f8">
+                        <div class="img card-body text-center">
+                          <div class="small font-italic text-muted mb-4 " id="View_area"
+                               aria-placeholder="5 MB가 넘지 않는 JPG 또는 PNG 파일"
+                               style="position:relative; width: 100%; height: 100%; color: black; border: 0px solid black; dispaly: inline;">
+                          </div>
+                          <!-- 명함 업로드 버튼-->
+                          <form method="post" enctype="multipart/form-data" id="imgForm">
+                            <label class="btn btn-outline-pink btn-sm"
+                                   for="profile_pt" name="profile_pt"
+                                   role="button">업로드</label>
+                            <input type="file" id="profile_pt" name="profile_pt"
+                                   accept="image/*"
+                                   onchange="previewImage(this,'View_area')"
+                                   style="display: none;">
+                            <script>
+                              function previewImage(targetObj, View_area) {
+                                var preview = document.getElementById(View_area); //div id
+                                var ua = window.navigator.userAgent;
+
+                                //ie일때(IE8 이하에서만 작동)
+                                if (ua.indexOf("MSIE") > -1) {
+                                  targetObj.select();
+                                  try {
+                                    var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
+                                    var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+
+
+                                    if (ie_preview_error) {
+                                      preview.removeChild(ie_preview_error); //error가 있으면 delete
+                                    }
+
+                                    var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+
+                                    //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+                                    img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
+                                  } catch (e) {
+                                    if (!document.getElementById("ie_preview_error_" + View_area)) {
+                                      var info = document.createElement("<p>");
+                                      info.id = "ie_preview_error_" + View_area;
+                                      info.innerHTML = e.name;
+                                      preview.insertBefore(info, null);
+                                    }
+                                  }
+                                  //ie가 아닐때(크롬, 사파리, FF)
+                                } else {
+                                  var files = targetObj.files;
+                                  for (var i = 0; i < files.length; i++) {
+                                    var file = files[i];
+                                    var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+                                    if (!file.type.match(imageType))
+                                      continue;
+                                    var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
+                                    if (prevImg) {
+                                      preview.removeChild(prevImg);
+                                    }
+                                    var img = document.createElement("img");
+                                    img.id = "prev_" + View_area;
+                                    img.classList.add("obj");
+                                    img.file = file;
+                                    img.style.width = '100%';
+                                    img.style.height = '100%';
+                                    preview.appendChild(img);
+                                    if (window.FileReader) { // FireFox, Chrome, Opera 확인.
+                                      var reader = new FileReader();
+                                      reader.onloadend = (function (aImg) {
+                                        return function (e) {
+                                          aImg.src = e.target.result;
+                                        };
+                                      })(img);
+                                      reader.readAsDataURL(file);
+                                    } else { // safari is not supported FileReader
+                                      //alert('not supported FileReader');
+                                      if (!document.getElementById("sfr_preview_error_"
+                                              + View_area)) {
+                                        var info = document.createElement("p");
+                                        info.id = "sfr_preview_error_" + View_area;
+                                        info.innerHTML = "not supported FileReader";
+                                        preview.insertBefore(info, null);
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            </script>
+                          </form>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+          <div class="col-md-3">&nbsp;</div>
+          <div class="col-md-6 card mb-xl-0">
+            <div class="">
+              <table class="table table-bordered border-bg-light"
+                     style="background-color: white; border: 4px solid #f8f8f8;">
+                <colgroup>
+                  <col style="width:20%">
+                </colgroup>
+                <tbody>
+                <tr>
+                  <td class="text-center"
+                      style="font-weight: bold; border:4px solid #f8f8f8; text-align: center;"><span
+                          style="color:#C00000;"># </span>상담<br>예상 내용
+                  </td>
+                  <td style="font-weight: bold; border:4px solid #f8f8f8; text-align: center;">
+                    <div class="display-flex justify-center">
+                                            <textarea class="form-control" id="inputConsulting" placeholder="내용을 입력해주세요"
+                                                      style="max-width: 100%; max-height: 100%;">2차 회의</textarea>
+
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"
+                      style="font-weight: bold; border:4px solid #f8f8f8; text-align: center;">
+                    준비물,<br>서류 등
+                  </td>
+                  <td>
+                                        <textarea class="form-control" id="inputMeetingSupplies"
+                                                  placeholder="내용을 입력해주세요">1차 회의 결과 보고서</textarea>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <form>
+
+
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+          <div class="col-md-8">&nbsp;</div>
+          <div class="col-md-3">
+            <button class="btn btn-navy btn-sm bg-gradient"  data-bs-toggle="modal" data-bs-target="#exampleModalCenter" type="button">일정 저장</button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel1"><b>알림</b></h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body px-4 mb-2 text-center">일정이 저장되었습니다.</div>
+
+                  <div class="modal-footer">
+                    <button class="btn btn-navy btn-sm" type="button" data-bs-dismiss="modal">확인</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </main>
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

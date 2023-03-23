@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>실사보고서 등록 - 이미지 업로드</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--부트스트랩 아이콘 cdn-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+  <script>
+    var submit = document.getElementById('submitButton');
+    submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
+
+    function showImage() {
+      var newImage = document.getElementById('image-show').lastElementChild;
+      newImage.style.visibility = "visible";
+
+      document.getElementById('image-upload').style.visibility = 'hidden';
+
+      document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+    }
+
+    function loadFile(input) {
+      var file = input.files[0];
+
+      var name = document.getElementById('fileName');
+      name.textContent = file.name;
+
+      var newImage = document.createElement("img");
+      newImage.setAttribute("class", 'img');
+
+      newImage.src = URL.createObjectURL(file);
+
+      newImage.style.width = "70%";
+      newImage.style.height = "70%";
+      newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
+      newImage.style.objectFit = "contain";
+
+      var container = document.getElementById('image-show');
+      container.appendChild(newImage);
+    };
+  </script>
+  <script>
+    function takePicture(input) {
+      $('#camera').change(function (e) {
+        $('#chooseFile').attr('src', URL.createObjectURL(e.target.files[0]));
+      });
+    };
+  </script>
+</head>
+<body>
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'registrationDueDiligence':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <div>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <!--<div class="col-md-9"
+                 style="height:4em; width:90%; background-color:#D5D5D5; color: #081148; padding-top: 1.25em; padding-left: 2em; margin-bottom: 2em;">-->
+            <!--<a style="font-weight: bold; margin-right: 1em;">공지사항</a> <a>[필독] 수수료 지급안내</a>-->
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparentlight" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <!--</div>-->
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div>&nbsp;</div>
+      <div class="container-fluid mt-n10"
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ 실사보고서 등록-이미지 업로드
+      </div>
+
+
+      <div class="container-xl px-4 mt-2"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+        <!-- memo
+        container-fluid vs table-responsive
+        -->
+        <div class="row row-cols-auto fw-900 text-lg" style="padding-left: 1em; padding-top: 1em; ">주의사항</div>
+        <div class="row row-cols-auto fw-900 text-blue" style="padding-left:1em;">*사진은 세로 촬영이 아닌 가로로 촬영하여
+          업로드해주세요.
+        </div>
+        <div class="row row-cols-auto fw-900 text-blue" style="padding-left:1em;">*필수 업로드, 필수 메모해줘야하는 사항</div>
+
+
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4 mt-4">
+            <table class="table-sm text-center">
+              <colgroup>
+                <col style="width:16%">
+                <col style="width:16%">
+                <col style="width:16%">
+                <col style="width:16%">
+              </colgroup>
+              <tbody>
+              <tr class="fw-800" style="background-color: #F2F2F2">
+                <td>설치위치전면</td>
+                <td>설치위치옆면</td>
+                <td>분전함</td>
+                <td>주차장도면</td>
+              </tr>
+              <tr>
+                <!--설치위치전면-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--설치위치옆면-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--분전함-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--주차장도면-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--업로드된파일명-->
+              <tr>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!--메모-->
+              <tr>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+              </tr>
+              <tr class="fw-800" style="background-color: #F2F2F2">
+                <td>배관/배전</td>
+                <td>기설치충전기</td>
+                <td>기타1</td>
+                <td>기타2</td>
+              </tr>
+              <tr>
+                <!--배관/배전-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--기설치충전기-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--기타1-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--기타2-->
+                <td>
+                  <div class="row p-1">
+                    <div class="col-sm-5 col-md-6" id="camera_btn">
+                      <form method="post" enctype="multipart/form-data" class="text-center">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-compact-camera-50.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[지금촬영]</span></button>
+                        </label>
+                        <input type="file" id="camera" name="camera" accept="image/*"
+                               capture="camera"
+                               onchange="takePicture(this)" style="display: none">
+                      </form>
+                    </div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                      <form method="post" enctype="multipart/form-data">
+                        <label for="chooseFile" style="cursor: pointer">
+                          <img src="/images/icons8-image-upload-64.png" width="40%"
+                               height="40%"><br>
+                          <span class="text-xs text-body">[업로드]</span></button>
+                        </label>
+                        <input type="file" id="chooseFile" name="chooseFile" accept="image/*"
+                               onchange="loadFile(this)" style="display: none">
+                        <!--visibility:hidden은 보이진 않으나 자리가 존재.-->
+                      </form>
+                    </div>
+                  </div>
+                </td>
+                <!--업로드된파일명-->
+              <tr>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="fileContainer " style="border: 1px solid #c5ccd6">
+                    <div class="fileInput">
+                      <p id="fileName" aria-placeholder="파일명"></p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!--메모-->
+              <tr>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">메모</label>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="container-xl px-4 mt-4">
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="col-lg-4 col-xl-12 mb-4">
+            <div class="row row-cols-auto">
+              <div class="col-auto me-auto">&nbsp;</div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-navy btn-sm">저장</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </main>
+
+      <footer class="footer-admin mt-auto footer-light">
+        <div class="container-xl px-4">
+          <div class="row">
+            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+            <div class="col-md-6 text-md-end small">
+              <a href="#!">Privacy Policy</a>
+              &middot;
+              <a href="#!">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

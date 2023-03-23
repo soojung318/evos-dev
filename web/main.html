@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>DB상세정보</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+
+  <!--부트스트랩 아이콘 cdn-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <!--임의로 신규DB등록 메뉴에 지정. 추후 변경할것-->
+  <%- include('./include/html/menu.html', {activeClass:{'registrationDB':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div>&nbsp;</div>
+      <div class="container-fluid mt-n10"
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 0.5em;">
+      </div>
+      <div class="container-fluid px-4 mt-4" style="margin-bottom:0.5em;">
+        <div class="row row-cols-auto text-dark fw-900">
+          <div class="col-md-4 px-4">
+            <label class="form-check-label" style="font-weight:bold;"> 월별 실사업적 순위</label>
+          </div>
+          <div class="col-md-4 px-4">
+            <label class="form-check-label" style="font-weight:bold;"> 월별 계약업적 순위</label>
+          </div>
+          <div class="col-md-4 px-4">
+            <label class="form-check-label" style="font-weight:bold;"> 공지사항</label>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid row row-cols-1 row-cols-md-3 g-4 px-4 mb-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <!--<h5 class="card-title">Card title</h5>-->
+              <p class="card-text">
+              <table id="datatablesSimple2" class="table table-borderless table-sm text-center">
+                <thead>
+                <tr>
+                  <th colspan="2" class="text-center">실사건수</th>
+                  <th colspan="2" class="text-center">실사대수</th>
+                  <th>실사건물 순위</th>
+                </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                <tr>
+                  <td>10</td>
+                  <td>가소라</td>
+                  <td>45</td>
+                  <td>김도연</td>
+                  <td>경북대학교 캠퍼스</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>정호영
+                  <td>
+                  <td>이병용</td>
+                  <td>부평현대1차 아파트</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>김성훈</td>
+                  <td>38</td>
+                  <td>정호영</td>
+                  <td>제주해오름 3차아파트</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>이병용</td>
+                  <td>25</td>
+                  <td>기소라</td>
+                  <td>샤크존 주차타워</td>
+                </tr>
+                </tbody>
+              </table>
+
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <!--<h5 class="card-title">Card title</h5>-->
+              <p class="card-text">
+              <table id="datatablesSimple" class="table table-borderless table-sm text-center">
+                <thead>
+                <tr>
+                  <th colspan="2" class="text-center">실사건수</th>
+                  <th colspan="2" class="text-center">실사대수</th>
+                  <th>실사건물 순위</th>
+                </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                <tr>
+                  <td>10</td>
+                  <td>가소라</td>
+                  <td>45</td>
+                  <td>김도연</td>
+                  <td>경북대학교 캠퍼스</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>정호영
+                  <td>
+                  <td>이병용</td>
+                  <td>부평현대1차 아파트</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>김성훈</td>
+                  <td>38</td>
+                  <td>정호영</td>
+                  <td>제주해오름 3차아파트</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>이병용</td>
+                  <td>25</td>
+                  <td>기소라</td>
+                  <td>샤크존 주차타워</td>
+                </tr>
+                </tbody>
+              </table>
+
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <!--<h5 class="card-title">Card title</h5>-->
+              <p class="card-text">
+              <table id="datatablesSimpleThree" class="table table-borderless table-sm">
+                <tbody>
+                <tr>
+                  <td>23.02.22</td>
+                  <td>자료실 업데이트</td>
+                  <td>운영팀</td>
+                </tr>
+                <tr>
+                  <td>23.02.09</td>
+                  <td>계약서 부가서류 추가</td>
+                  <td>전산팀</td>
+                </tr>
+                <tr>
+                  <td>23.02.01</td>
+                  <td>2월 프로모션 안내</td>
+                  <td>관리자</td>
+                </tr>
+                <tr>
+                  <td>23.02.01</td>
+                  <td>충전사 이슈사항</td>
+                  <td>운영팀</td>
+                </tr>
+                <tr>
+                  <td>23.01.26</td>
+                  <td>EVOS 사용방법 안내</td>
+                  <td>관리자</td>
+                </tr>
+
+                </tbody>
+              </table>
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-4 mt-4">
+        <div class="row row-cols-auto text-dark fw-800 mt-4">
+          <div class="col-md-4 px-4 mt-4">▪️
+            <label class="form-check-label fw-700"> CheckList</label>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-4 ">
+
+        <div class=" card mb-3">
+          <div class="card-body">
+            <!--<h5 class="card-title">Card title</h5>-->
+            <p class="card-text">
+            <table id="datatablesSimple3" class="table caption-top table-sm text-center">
+
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+              <tr style="background-color: #F5F5F5">
+                <th>No</th>
+                <th>사유</th>
+                <th>건물명</th>
+                <th>총주차면</th>
+                <th>실사대수</th>
+                <th>주소</th>
+                <th>현재상태</th>
+              </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+              <tr>
+                <td>706</td>
+                <td style="color:red;">고객사연락요청</td>
+                <td>안양시 공영주차장</td>
+                <td>1354</td>
+                <td>28</td>
+                <td>안양시청</td>
+                <td>실사요청</td>
+              </tr>
+              <tr>
+                <td>705</td>
+                <td style="color:blue;">신규DB배분</td>
+                <td>한국에너지기술연구원</td>
+                <td>105</td>
+                <td>3</td>
+                <td>테크노산업로55번길 26</td>
+                <td>실사요청</td>
+              </tr>
+
+              <tr>
+                <td>704</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #1</td>
+                <td>550</td>
+                <td>11</td>
+                <td>안양구 123</td>
+                <td>실사완료</td>
+              </tr>
+
+              <tr>
+                <td>703</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #2</td>
+                <td>325</td>
+                <td>7</td>
+                <td>안양구 14</td>
+                <td>실사완료</td>
+              </tr>
+              <tr>
+                <td>704</td>
+                <td style="color:#BF9000;">실사보고서등록</td>
+                <td>안양시 공영주차장 #1</td>
+                <td>479</td>
+                <td>10</td>
+                <td>동안구 11</td>
+                <td>실사완료</td>
+              </tr>
+
+
+              </tbody>
+            </table>
+            </p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid mt-4 px-5">
+        <div class="row row-cols-auto text-dark fw-900 px-5">
+          <!--<label class="form-check-label fw-800"> CheckList</label>-->
+          <div class="row row-cols-lg-auto g-3 align-items-center px-5" style="font-weight:bold;">
+            <div class="col-12" style="padding-left: 5em;">
+              <span style="color:#BF9000;">금일실사등록</span>
+            </div>
+            <div class="col-12">
+              <select class="form-select form-select-sm" id="autoSizingSelect">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mt-2">
+        <div class="row text-dark fw-900">
+          <!--<label class="form-check-label fw-800"> CheckList</label>-->
+          <div class="col-md-10 offset-md-1 text-center"
+               style="font-size:20px; font-weight:bold; border: 5px solid #BF9000; background-color: white; width:80%; border-radius: 20px;">
+            <span>금일 실사등록 총  </span><a style="color:#BF9000; font-size:40px;">3</a><span>  건 입니다.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mt-4 px-5">
+        <div class="px-5 mx-5">
+          <div class="row row-cols-7 row-cols-md-7 g-4 px-5 text-dark" style="font-size: 18px; font-weight:bold;">
+
+            <div class="col" style="position: relative;">
+              <!--노란선-->
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+
+                <div class="card-body text-center">
+
+                  <p class="card-text">28</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col" style="position: relative;">
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">25</p>
+                </div>
+              </div>
+            </div>
+            <div class="col" style="position: relative;">
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">7</p>
+                </div>
+              </div>
+            </div>
+            <div class="col" style="position: relative;">
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">18</p>
+                </div>
+              </div>
+            </div>
+            <div class="col" style="position: relative;">
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">13</p>
+                </div>
+              </div>
+            </div>
+            <div class="col" style="position: relative;">
+              <hr style="position:absolute; border:none; border-top:3px solid #BF9000; color: #fff; background-color: #fff; height:1px; width:100%;">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">5</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 w-50">
+                <div class="card-body text-center">
+                  <p class="card-text">3</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

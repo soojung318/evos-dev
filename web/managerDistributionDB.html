@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>DB분배[관리자모드]</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/include/css/style.css" />
+  <link rel="icon" href="/images/LOGO1_2.png" />
+  <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'managerDistributionDB':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <!--<div class="col-md-9"
+                 style="height:4em; width:90%; background-color:#D5D5D5; color: #081148; padding-top: 1.25em; padding-left: 2em; margin-bottom: 2em;">-->
+            <!--<a style="font-weight: bold; margin-right: 1em;">공지사항</a> <a>[필독] 수수료 지급안내</a>-->
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <!--</div>-->
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container-fluid mt-n10 "
+           style="font-weight: bold; font-size: 20px; color:black; margin-bottom: 1em;">◾ DB관리[관리자뷰]
+      </div>
+      <div class="container-xl px-4 mt-4" style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+        <div style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ EV123_DB분배</div>
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+
+          <div class="row row-cols-auto">
+            <div class="col-auto me-auto">
+              <input class="form-check-input" type="checkbox">
+              <label class="form-check-label"> All</label>&nbsp;
+
+            </div>
+            <div class="col-auto">
+              <div class="input-group mb-3">
+                <button class="btn btn-navy btn-sm" type="button" id="button-addon1">필터검색</button>
+                <input type="text" class="form-control form-control-sm" placeholder="Search"
+                       aria-label="Example text with button addon" aria-describedby="button-addon1">
+              </div>
+            </div>
+          </div>
+
+          <!--기존 소스코드
+          <div class="row row-cols-auto">
+              <div class="col-md-6">
+                  <input class="form-check-input" type="checkbox">
+                  <label class="form-check-label"> All</label>
+              </div>
+
+              <div class="col-md-2">
+                  <button style="margin-left: 5em; border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 1.5em; padding-right: 1.5em; font-size:14px;">필터검색</button>
+              </div>
+              <div class="col-md-4 search-mode" style="position: relative;">
+                  <input type="text" style="width: 100%; border: 1px solid #f1f1f1; border-radius: 20px;">
+                  <div class="icon" style="display: flex; justify-content: space-between; position: absolute; top: 2.5px; right: 20px; left: 20px;">
+                      <div class="search" style="color:#808080;">
+                          <i class="fas fa-search"></i>
+                      </div>
+                      <div class="plus-option" style="display: inline-block; margin-left: 20px; color:#4f86ec;">
+                          <i class="fas fa-keyboard"></i>
+                          <i class="fas fa-microphone"></i>
+                      </div>
+                  </div>
+              </div
+          </div>-->
+        </div>
+        <div class="col-lg-4 col-xl-12  mb-4">
+          <div class="table-responsive" style="background-color: white">
+            <table id="datatablesSimple" class="table caption-top table-sm" style="background-color: white">
+
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="text-center" scope="col"><input class="form-check-input" type="checkbox"></th>
+                <th class="text-center" scope="col">NO</th>
+                <th class="text-center" scope="col">DB번호</th>
+                <th class="text-center" scope="col">1차건물</th>
+                <th class="text-center" scope="col">건물명</th>
+                <th class="text-center" scope="col">주소1</th>
+                <th class="text-center" scope="col">주소2</th>
+                <th class="text-center" scope="col">주소</th>
+                <th class="text-center" scope="col">총주차면</th>
+                <th class="text-center" scope="col">의무설치대수</th>
+                <th class="text-center" scope="col">담당자명</th>
+                <th class="text-center" scope="col">담당자연락처</th>
+              </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>7</td>
+                <td>D12323007</td>
+                <td>공공시설</td>
+                <td>[안양시청]공영주차장01</td>
+                <td>안양</td>
+                <td>중구</td>
+                <td>상세주소13-4</td>
+                <td>105</td>
+                <td>5</td>
+                <td>김제원</td>
+                <td>010-1212-7174</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>6</td>
+                <td>D12323006</td>
+                <td>상업시설</td>
+                <td>사우스링스</td>
+                <td>서울</td>
+                <td>서구</td>
+                <td>상세주소13-4</td>
+                <td>200</td>
+                <td>3</td>
+                <td>이지원</td>
+                <td>010-1212-1758</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>5</td>
+                <td>D12323005</td>
+                <td>공공시설</td>
+                <td>[안양시청]공영주차장03</td>
+                <td>안양</td>
+                <td>동구</td>
+                <td>상세주소13-4</td>
+                <td>100</td>
+                <td>3</td>
+                <td>김제원</td>
+                <td>010-1212-7285</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>4</td>
+                <td>D12323004</td>
+                <td>상업시설</td>
+                <td>호텔나루</td>
+                <td>인천</td>
+                <td>계양구</td>
+                <td>상세주소13-4</td>
+                <td>77</td>
+                <td>2</td>
+                <td>이승민</td>
+                <td>010-1212-7174</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>3</td>
+                <td>D12323003</td>
+                <td>상업시설</td>
+                <td>샤크존 주차장</td>
+                <td>부산</td>
+                <td>해운대구</td>
+                <td>상세주소13-4</td>
+                <td>84</td>
+                <td>1</td>
+                <td>황규호</td>
+                <td>010-1212-2312</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>2</td>
+                <td>D12323002</td>
+                <td>주거시설</td>
+                <td>수정타운아파트</td>
+                <td>대전</td>
+                <td>유성구</td>
+                <td>상세주소13-4</td>
+                <td>307</td>
+                <td>3</td>
+                <td>김수민</td>
+                <td>010-1212-7174</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>1</td>
+                <td>D12323001</td>
+                <td>상업시설</td>
+                <td>삼산농산물도매시장</td>
+                <td>인천</td>
+                <td>미추홀구</td>
+                <td>상세주소13-4</td>
+                <td>114</td>
+                <td>2</td>
+                <td>박윤식</td>
+                <td>010-4564-7553</td>
+              </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container show-grid" style="margin-top: 1em;">
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-navy btn-sm" onclick="location.href='assignmentDB1.html';" >배  정</button><!--style="margin-left: 4em; border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 2em; padding-right: 2em; font-size:14px;"-->
+            <button type="button" class="btn btn-navy btn-sm">DB추가</button><!--style="border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 1.5em; padding-right: 1.5em; font-size:14px;"-->
+            <button type="button" class="btn btn-navy btn-sm">삭제</button><!--style="border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 1.5em; padding-right: 1.5em; font-size:14px;"-->
+          </div>
+        </div>
+      </div>
+
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div class="container-xl px-4 mt-n10 mt-4" style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+        <div style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ 실사요청서_DB분배</div>
+        <div class="container show-grid" style="margin-bottom:0.5em;">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="checkbox"> All
+            </div>
+            <div class="col-md-2">
+              <button style="margin-left: 5em; border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 1.5em; padding-right: 1.5em; font-size:14px;">필터검색</button>
+            </div>
+            <div class="col-md-4 search-mode" style="position: relative;">
+              <input type="text" style="width: 100%; border: 1px solid #f1f1f1; border-radius: 20px;">
+              <div class="icon" style="display: flex; justify-content: space-between; position: absolute; top: 2.5px; right: 20px; left: 20px;">
+                <div class="search" style="color:#808080;">
+                  <i class="fas fa-search"></i>
+                </div>
+                <div class="plus-option" style="display: inline-block; margin-left: 20px; color:#4f86ec;">
+                  <i class="fas fa-keyboard"></i>
+                  <i class="fas fa-microphone"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-xl-12  mb-4">
+          <div class="" style="background-color: white">
+            <table id="datatablesSimple2" class="table caption-top table-sm" style="background-color: white">
+
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+              <tr>
+                <td><input class="form-check-input" type="checkbox"></td>
+                <th class="text-center">NO</th>
+                <th class="text-center">DB번호</th>
+                <th class="text-center">1차건물</th>
+                <th class="text-center">건물명</th>
+                <th class="text-center">주소1</th>
+                <th class="text-center">주소2</th>
+                <th class="text-center">주소</th>
+                <th class="text-center">총주차면</th>
+                <th class="text-center">의무설치대수</th>
+                <th class="text-center">담당자명</th>
+                <th class="text-center">담당자연락처</th>
+              </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>4</td>
+                <td>D12323004</td>
+                <td>상업시설</td>
+                <td>호텔나루</td>
+                <td>인천</td>
+                <td>계양구</td>
+                <td>상세주소13-4</td>
+                <td>77</td>
+                <td>2</td>
+                <td>이승민</td>
+                <td>010-1212-7174</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>3</td>
+                <td>D12323003</td>
+                <td>상업시설</td>
+                <td>샤크존 주차장</td>
+                <td>부산</td>
+                <td>해운대구</td>
+                <td>상세주소13-4</td>
+                <td>84</td>
+                <td>1</td>
+                <td>황규호</td>
+                <td>010-1212-2312</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>2</td>
+                <td>D12323002</td>
+                <td>주거시설</td>
+                <td>수정타운아파트</td>
+                <td>대전</td>
+                <td>유성구</td>
+                <td>상세주소13-4</td>
+                <td>307</td>
+                <td>3</td>
+                <td>김수민</td>
+                <td>010-1212-7174</td>
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>1</td>
+                <td>D12323001</td>
+                <td>상업시설</td>
+                <td>삼산농산물도매시장</td>
+                <td>인천</td>
+                <td>미추홀구</td>
+                <td>상세주소13-4</td>
+                <td>114</td>
+                <td>2</td>
+                <td>박윤식</td>
+                <td>010-4564-7553</td>
+              </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container show-grid" style="margin-top: 1em;">
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-navy btn-sm" onclick="location.href='assignmentDB2.html';" >배  정</button><!--style="margin-left: 4em; border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 2em; padding-right: 2em; font-size:14px;"-->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>

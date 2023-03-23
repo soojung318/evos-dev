@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>DB관리(관리자만)-EV123:배정</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/include/css/style.css"/>
+  <link rel="icon" href="/images/LOGO1_2.png"/>
+  <script data-search-pseudo-elements defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+          crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div id="layoutSidenav">
+  <%- include('./include/html/menu.html', {activeClass:{'assignmentDB':'active'}}); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid"><!-- px-4 mt-4-->
+          <div class="row row-cols-auto">
+            <div class="col-md-11">
+              <a class="card lift lift-sm bg-transparent" href="#!">
+                <div class="card-body" style="color:#081148; font-weight:bold;">공지사항 [필독] 수수료 지급안내</div>
+              </a>
+            </div>
+            <div class="col-md-1" style="padding-top: 1.25em; padding-left: 2em;">
+              <img class="img-fluid" src="images/exit.png" width="30" height="30">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container-fluid mt-n10 "
+           style="font-weight: bold; font-size: 25px; color:black; margin-bottom: 1em;">◾ EV123_DB분배
+      </div>
+      <div class="container-xl px-4 mt-4"
+           style="background-color: white; padding-top: 1em; padding-bottom: 1em; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+
+        <div class="container-fluid" style="margin-bottom:0.5em;">
+          <div class="row row-cols-auto">
+            <div class="col-md-8">
+              <input class="form-check-input" type="checkbox">
+              <label class="form-check-label"> All</label>
+            </div>
+            <div class="col-md-1">
+              <span style="font-weight:bold;">영업담당자</span>
+            </div>
+            <div class="col-md-1">
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownFadeIn"
+                        type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">EVO이병용
+                </button>
+                <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeIn">
+                  <a class="dropdown-item" href="#!">EV0홍길동</a>
+                  <a class="dropdown-item" href="#!">EVO유재석</a>
+                  <a class="dropdown-item" href="#!">EVO노홍철</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-4 col-xl-12  mb-4">
+          <div class="table-responsive" style="background-color: white">
+            <table id="datatablesSimple" class="table caption-top table-sm" style="background-color: white">
+
+              <colgroup>
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="text-center" scope="col"><input class="form-check-input" type="checkbox">
+                </th>
+                <th class="text-center" scope="col">NO</th>
+                <th class="text-center" scope="col">DB번호</th>
+                <th class="text-center" scope="col">1차건물</th>
+                <th class="text-center" scope="col">건물명</th>
+                <th class="text-center" scope="col">주소1</th>
+                <th class="text-center" scope="col">의무설치대수</th>
+
+              </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>3</td>
+                <td>D12323003</td>
+                <td>상업시설</td>
+                <td>샤크존 주차장</td>
+                <td>부산</td>
+                <td>5</td>
+
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>2</td>
+                <td>D12323002</td>
+                <td>주거시설</td>
+                <td>수정타운아파트</td>
+                <td>대전</td>
+                <td>3</td>
+
+              </tr>
+              <tr class="text-center">
+                <td><input class="form-check-input" type="checkbox"></td>
+                <td>1</td>
+                <td>D12323001</td>
+                <td>공공시설</td>
+                <td>삼산농산물도매시장</td>
+                <td>인천</td>
+                <td>2</td>
+
+              </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container show-grid" style="margin-top: 1em;">
+        <div class="row">
+          <div class="col-md-10"></div>
+          <div class="col-md-2">
+            <button style="border: none; background-color:#081148; color:white; padding-top:4px; padding-left: 2em; padding-right: 2em; font-size:14px;">
+              배 정
+            </button>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+    <footer class="footer-admin mt-auto footer-light">
+      <div class="container-xl px-4">
+        <div class="row">
+          <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+          <div class="col-md-6 text-md-end small">
+            <a href="#!">Privacy Policy</a>
+            &middot;
+            <a href="#!">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables/datatables-simple-demo.js"></script>
+</body>
+</html>
